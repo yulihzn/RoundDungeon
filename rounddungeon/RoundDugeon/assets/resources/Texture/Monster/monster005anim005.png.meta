@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.4",
+  "uuid": "8bc0b0fa-2034-451e-a373-f97f15e736cf",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "point",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 21,
+  "height": 21,
+  "platformSettings": {},
+  "subMetas": {
+    "monster005anim005": {
+      "ver": "1.0.4",
+      "uuid": "ee623d01-c507-4636-94d8-98e3717983b7",
+      "rawTextureUuid": "8bc0b0fa-2034-451e-a373-f97f15e736cf",
+      "trimType": "custom",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 21,
+      "height": 21,
+      "rawWidth": 21,
+      "rawHeight": 21,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
