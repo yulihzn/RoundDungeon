@@ -1,4 +1,5 @@
 import Actor from "../base/Actor";
+import DamageData from "../data/DamageData";
 
 // Learn TypeScript:
 //  - https://docs.cocos.com/creator/manual/en/scripting/typescript.html
@@ -19,7 +20,7 @@ export default class Boss extends Actor {
     start () {
 
     }
-    takeDamage(damage: default): boolean {
+    takeDamage(damage: DamageData): boolean {
         return false;
     }
     actorName(): string {

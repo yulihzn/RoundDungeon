@@ -81,10 +81,10 @@ export default class Controller extends cc.Component {
             this.leftActionTouched = false;
         }, this)
         this.rightAction.on(cc.Node.EventType.TOUCH_START, (event: cc.Event.EventTouch) => {
-            this.leftActionTouched = true;
+            this.rightActionTouched = true;
         }, this)
 
-        this.leftAction.on(cc.Node.EventType.TOUCH_END, (event: cc.Event.EventTouch) => {
+        this.rightAction.on(cc.Node.EventType.TOUCH_END, (event: cc.Event.EventTouch) => {
             this.rightActionTouched = false;
         }, this)
 

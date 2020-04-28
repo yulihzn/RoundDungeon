@@ -13,8 +13,8 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class Dungeon extends cc.Component {
-    static WIDTH_SIZE: number = 9;
-    static HEIGHT_SIZE: number = 9;
+    static WIDTH_SIZE: number = 11;
+    static HEIGHT_SIZE: number = 11;
     static readonly MAPX: number = 32;
     static readonly MAPY: number = 32;
     static readonly TILE_SIZE: number = 64;

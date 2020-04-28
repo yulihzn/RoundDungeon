@@ -2,6 +2,7 @@ import Dungeon from "../logic/Dungeon";
 import Actor from "../base/Actor";
 import EventConstant from "../logic/EventConstant";
 import Logic from "../logic/Logic";
+import DamageData from "../data/DamageData";
 
 // Learn TypeScript:
 //  - https://docs.cocos.com/creator/manual/en/scripting/typescript.html
@@ -28,7 +29,7 @@ export default class Player extends Actor {
     onLoad() {
         cc.director.on(EventConstant.PLAYER_ATTACK
             , (event) => { this.attack() });
-        this.setPlayerPosition(cc.v3(Math.round(Dungeon.WIDTH_SIZE / 2), Math.round(Dungeon.HEIGHT_SIZE / 2)));
+        this.setPlayerPosition(cc.v3(Math.floor(Dungeon.WIDTH_SIZE / 2), Math.floor(Dungeon.HEIGHT_SIZE / 2)));
         this.anim = this.getComponent(cc.Animation);
         this.playerAnim(Player.STATE_IDLE);
     }
@@ -38,7 +39,7 @@ export default class Player extends Actor {
     }
     private attack() {
         this.playerAnim(Player.STATE_ATTACK);
-        this.scheduleOnce(() => { this.playerAnim(Player.STATE_IDLE); }, 2)
+        this.scheduleOnce(() => { this.playerAnim(Player.STATE_IDLE); }, 0.3)
     }
     setPlayerPosition(pos:cc.Vec3){
         this.pos = pos.clone();
@@ -49,6 +50,9 @@ export default class Player extends Actor {
         this.move(dir, pos, dt);
     }
     private move(dir: number, pos: cc.Vec3, dt: number): void {
+        if(this.isMoving||dir>3){
+            return;
+        }
         let offsetX = 0;
         let offsetY = 0;
         switch (dir) {
@@ -62,9 +66,7 @@ export default class Player extends Actor {
         if (targetPos.x < 0 || targetPos.x >= Dungeon.WIDTH_SIZE || targetPos.y < 0 || targetPos.y >= Dungeon.WIDTH_SIZE) {
             return;
         }
-        if(this.isMoving){
-            return;
-        }
+        
         this.isMoving = true;
         if (dir == 2) {
             this.isFaceRight = false;
@@ -79,7 +81,7 @@ export default class Player extends Actor {
             this.setPlayerPosition(targetPos);
         }).start();
     }
-    takeDamage(damage: default): boolean {
+    takeDamage(damage: DamageData): boolean {
         return false;
     }
     actorName(): string {
