@@ -17,16 +17,18 @@ export default class Loading extends cc.Component {
     private timeDelay = 0;
     private isSpriteFramesLoaded = false;
     private isRemoteLoaded = false;
+
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
         this.label.string = 'loading...';
     }
 
-    start () {
+    start() {
         this.loadSpriteFrames();
         this.loadRemote();
     }
+
     loadSpriteFrames() {
         if (Logic.spriteFrames) {
             this.isSpriteFramesLoaded = true;
@@ -41,25 +43,28 @@ export default class Loading extends cc.Component {
             cc.log('texture loaded');
         })
     }
-    loadRemote(){
-        this.isRemoteLoaded = true;
-        // let xhr = new XMLHttpRequest();
-        // xhr.onreadystatechange = ()=> {
-        //     if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
-        //         var response = xhr.responseText;
-        //         console.log(response);
-        //     }
-        //     this.isRemoteLoaded = true;
-        // };
-        // xhr.open("GET", "http://localhost:8080/round/map0.txt", true);
-        // xhr.send();
+
+    loadRemote() {
+        // this.isRemoteLoaded = true;
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+                var response = xhr.responseText;
+                console.log(response);
+                this.isRemoteLoaded = true;
+            }
+        };
+        xhr.open("GET", "http://localhost:8080/mapList", true);
+        xhr.send();
     }
+
     update(dt) {
         this.timeDelay += dt;
         if (this.timeDelay > 0.16 && this.isSpriteFramesLoaded && this.isRemoteLoaded) {
             this.timeDelay = 0;
             this.isSpriteFramesLoaded = false;
-            cc.director.preloadScene('game',()=>{},()=>{
+            cc.director.preloadScene('game', () => {
+            }, () => {
                 cc.director.loadScene('game');
             })
         }

@@ -13,11 +13,11 @@ export default class Start extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {}
-    startGame(){
+    startGame() {
         cc.director.loadScene('loading');
     }
 
-    start () {
+    start() {
 
     }
 

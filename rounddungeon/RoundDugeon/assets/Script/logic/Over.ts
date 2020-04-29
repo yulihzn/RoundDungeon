@@ -14,7 +14,7 @@ export default class Over extends cc.Component {
 
     // onLoad () {}
 
-    start () {
+    start() {
 
     }
 

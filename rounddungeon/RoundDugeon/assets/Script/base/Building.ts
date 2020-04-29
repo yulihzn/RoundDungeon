@@ -1,7 +1,5 @@
-import Actor from "../base/Actor";
+import Actor from "./Actor";
 import DamageData from "../data/DamageData";
-import MonsterData from "../data/MonsterData";
-import Dungeon from "../logic/Dungeon";
 
 // Learn TypeScript:
 //  - https://docs.cocos.com/creator/manual/en/scripting/typescript.html
@@ -13,21 +11,7 @@ import Dungeon from "../logic/Dungeon";
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class Monster extends Actor {
-
-    isShow: boolean = false;
-    isDied: boolean = false;
-    data: MonsterData = new MonsterData();
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {}
-
-    start() {
-
-    }
-
-    playAction(dir: number, dungeon: Dungeon) {
-    }
+export default class Building extends Actor {
 
     takeDamage(damage: DamageData): boolean {
         return false;
@@ -35,6 +19,14 @@ export default class Monster extends Actor {
 
     actorName(): string {
         return '';
+    }
+
+    // LIFE-CYCLE CALLBACKS:
+
+    // onLoad () {}
+
+    start() {
+
     }
 
     // update (dt) {}

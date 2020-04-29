@@ -26,97 +26,144 @@ export default class KeyboardController extends cc.Component {
     isB = false;
     isC = false;
     isD = false;
-    onLoad () {
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN,this.onKeyDown,this);
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP,this.onKeyUp,this);
+
+    onLoad() {
+        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     }
 
-    start () {
+    start() {
 
     }
-    onKeyDown(event:cc.Event.EventKeyboard){
-        switch(event.keyCode){
-            case cc.macro.KEY.w:this.isUp =true;break;
-            case cc.macro.KEY.s:this.isDown =true;break;
-            case cc.macro.KEY.a:this.isLeft =true;break;
-            case cc.macro.KEY.d:this.isRight =true;break;
 
-            case cc.macro.KEY.j:this.isA = true;break;
-            case cc.macro.KEY.k:this.isB = true;break;
-            case cc.macro.KEY.i:this.isC = true;break;
-            case cc.macro.KEY.l:this.isD = true;break;
+    onKeyDown(event: cc.Event.EventKeyboard) {
+        switch (event.keyCode) {
+            case cc.macro.KEY.w:
+                this.isUp = true;
+                break;
+            case cc.macro.KEY.s:
+                this.isDown = true;
+                break;
+            case cc.macro.KEY.a:
+                this.isLeft = true;
+                break;
+            case cc.macro.KEY.d:
+                this.isRight = true;
+                break;
+
+            case cc.macro.KEY.j:
+                this.isA = true;
+                break;
+            case cc.macro.KEY.k:
+                this.isB = true;
+                break;
+            case cc.macro.KEY.i:
+                this.isC = true;
+                break;
+            case cc.macro.KEY.l:
+                this.isD = true;
+                break;
         }
     }
-    onKeyUp(event:cc.Event.EventKeyboard){
-        switch(event.keyCode){
-            case cc.macro.KEY.w:this.isUp =false;break;
-            case cc.macro.KEY.s:this.isDown =false;break;
-            case cc.macro.KEY.a:this.isLeft =false;break;
-            case cc.macro.KEY.d:this.isRight =false;break;
 
-            case cc.macro.KEY.j:this.isA = false;break;
-            case cc.macro.KEY.k:this.isB = false;break;
-            case cc.macro.KEY.i:this.isC = false;break;
-            case cc.macro.KEY.l:this.isD = false;break;
+    onKeyUp(event: cc.Event.EventKeyboard) {
+        switch (event.keyCode) {
+            case cc.macro.KEY.w:
+                this.isUp = false;
+                break;
+            case cc.macro.KEY.s:
+                this.isDown = false;
+                break;
+            case cc.macro.KEY.a:
+                this.isLeft = false;
+                break;
+            case cc.macro.KEY.d:
+                this.isRight = false;
+                break;
+
+            case cc.macro.KEY.j:
+                this.isA = false;
+                break;
+            case cc.macro.KEY.k:
+                this.isB = false;
+                break;
+            case cc.macro.KEY.i:
+                this.isC = false;
+                break;
+            case cc.macro.KEY.l:
+                this.isD = false;
+                break;
         }
     }
-    update (dt) {
-        if(this.isTimeDelay(dt)){
+
+    update(dt) {
+        if (this.isTimeDelay(dt)) {
             this.sendMoveMessageToPlayer(dt);
         }
-        
+
     }
-    sendMoveMessageToPlayer(dt:number){
-        
-        let pos = cc.v3(0,0);
-        if(this.isUp){pos.addSelf(cc.v3(0,0.9));}
-        if(this.isDown){pos.addSelf(cc.v3(0,-0.9));}
-        if(this.isLeft){pos.addSelf(cc.v3(-0.9,0));}
-        if(this.isRight){pos.addSelf(cc.v3(0.9,0));}
-        if (pos.mag()>0){
+
+    sendMoveMessageToPlayer(dt: number) {
+
+        let pos = cc.v3(0, 0);
+        if (this.isUp) {
+            pos.addSelf(cc.v3(0, 0.9));
+        }
+        if (this.isDown) {
+            pos.addSelf(cc.v3(0, -0.9));
+        }
+        if (this.isLeft) {
+            pos.addSelf(cc.v3(-0.9, 0));
+        }
+        if (this.isRight) {
+            pos.addSelf(cc.v3(0.9, 0));
+        }
+        if (pos.mag() > 0) {
             pos.normalizeSelf();
         }
         let dir = 4;
-        if(Math.abs(pos.x)<Math.abs(pos.y)){
-            if(pos.y>0.3){
+        if (Math.abs(pos.x) < Math.abs(pos.y)) {
+            if (pos.y > 0.3) {
                 dir = 0;
             }
-            if(pos.y<-0.3){
+            if (pos.y < -0.3) {
                 dir = 1;
             }
-            
+
         }
-        if(Math.abs(pos.x)>Math.abs(pos.y)){
-            if(pos.x<-0.3){
+        if (Math.abs(pos.x) > Math.abs(pos.y)) {
+            if (pos.x < -0.3) {
                 dir = 2;
             }
-            if(pos.x>0.3){
+            if (pos.x > 0.3) {
                 dir = 3;
             }
         }
-        if(!pos.equals(cc.Vec3.ZERO)){
+        if (!pos.equals(cc.Vec3.ZERO)) {
             this.stopCount = 0;
-        }else{
+        } else {
             this.stopCount++;
         }
-        if(this.stopCount<2){
-            cc.director.emit(EventConstant.PLAYER_MOVE,{detail:{dir:dir,pos:pos,dt:dt}})
+        if (this.stopCount < 2) {
+            cc.director.emit(EventConstant.PLAYER_MOVE, {detail: {dir: dir, pos: pos, dt: dt}})
         }
-        if(this.isA){
+        if (this.isA) {
             cc.director.emit(EventConstant.PLAYER_ATTACK);
         }
-        if(this.isB){
+        if (this.isB) {
             cc.director.emit(EventConstant.PLAYER_ATTACK);
         }
-        if(this.isC){
+        if (this.isC) {
             cc.director.emit(EventConstant.PLAYER_ATTACK);
         }
-        if(this.isD){
+        if (this.isD) {
             cc.director.emit(EventConstant.PLAYER_ATTACK);
         }
-        
+
     }
+
     timeDelay = 0;
+
     isTimeDelay(dt: number): boolean {
         this.timeDelay += dt;
         if (this.timeDelay > 0.016) {

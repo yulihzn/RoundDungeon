@@ -12,6 +12,8 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default abstract class Actor extends cc.Component {
     abstract takeDamage(damage: DamageData): boolean;
-    abstract actorName():string;
-    pos:cc.Vec3 = cc.Vec3.ZERO;
+
+    abstract actorName(): string;
+
+    pos: cc.Vec3 = cc.Vec3.ZERO;
 }

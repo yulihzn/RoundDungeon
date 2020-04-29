@@ -10,7 +10,7 @@ import EventConstant from "./EventConstant";
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
-const { ccclass, property } = cc._decorator;
+const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class Controller extends cc.Component {
@@ -94,6 +94,7 @@ export default class Controller extends cc.Component {
     }
 
     timeDelay = 0;
+
     isTimeDelay(dt: number): boolean {
         this.timeDelay += dt;
         if (this.timeDelay > 0.016) {
@@ -102,25 +103,25 @@ export default class Controller extends cc.Component {
         }
         return false;
     }
- 
+
     update(dt) {
         if (this.isTimeDelay(dt)) {
             if (this.attackActionTouched) {
                 cc.director.emit(EventConstant.PLAYER_ATTACK);
             }
             if (this.upActionTouched) {
-                cc.director.emit(EventConstant.PLAYER_MOVE,{detail:{dir:0,pos:cc.Vec3.ZERO,dt:dt}})
+                cc.director.emit(EventConstant.PLAYER_MOVE, {detail: {dir: 0, pos: cc.Vec3.ZERO, dt: dt}})
             }
             if (this.downActionTouched) {
-                cc.director.emit(EventConstant.PLAYER_MOVE,{detail:{dir:1,pos:cc.Vec3.ZERO,dt:dt}})
+                cc.director.emit(EventConstant.PLAYER_MOVE, {detail: {dir: 1, pos: cc.Vec3.ZERO, dt: dt}})
             }
             if (this.leftActionTouched) {
-                cc.director.emit(EventConstant.PLAYER_MOVE,{detail:{dir:2,pos:cc.Vec3.ZERO,dt:dt}})
+                cc.director.emit(EventConstant.PLAYER_MOVE, {detail: {dir: 2, pos: cc.Vec3.ZERO, dt: dt}})
             }
             if (this.rightActionTouched) {
-                cc.director.emit(EventConstant.PLAYER_MOVE,{detail:{dir:3,pos:cc.Vec3.ZERO,dt:dt}})
+                cc.director.emit(EventConstant.PLAYER_MOVE, {detail: {dir: 3, pos: cc.Vec3.ZERO, dt: dt}})
             }
         }
     }
-    
+
 }

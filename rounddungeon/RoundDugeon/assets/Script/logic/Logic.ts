@@ -13,13 +13,14 @@ export default class Logic extends cc.Component {
     //图片资源
     static spriteFrames: { [key: string]: cc.SpriteFrame } = null;
     static speed = 1;
+
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
         cc.game.addPersistRootNode(this.node);
     }
 
-    start () {
+    start() {
 
     }
 

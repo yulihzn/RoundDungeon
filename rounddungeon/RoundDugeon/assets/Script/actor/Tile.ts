@@ -10,14 +10,14 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class Tile extends cc.Component {
 
-    private sprite:cc.Sprite;
+    private sprite: cc.Sprite;
     tileType = '**';
 
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {}
 
-    start () {
+    start() {
 
     }
 

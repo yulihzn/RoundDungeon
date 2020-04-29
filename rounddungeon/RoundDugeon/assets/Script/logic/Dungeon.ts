@@ -1,6 +1,8 @@
 import Tile from "../actor/Tile";
 import EventConstant from "./EventConstant";
 import Player from "../actor/Player";
+import Monster from "../actor/Monster";
+import Building from "../base/Building";
 
 // Learn TypeScript:
 //  - https://docs.cocos.com/creator/manual/en/scripting/typescript.html
@@ -9,7 +11,7 @@ import Player from "../actor/Player";
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
-const { ccclass, property } = cc._decorator;
+const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class Dungeon extends cc.Component {
@@ -22,12 +24,17 @@ export default class Dungeon extends cc.Component {
     tilePrefab: cc.Prefab = null;
     @property(cc.Prefab)
     playerPrefab: cc.Prefab = null;
-    player:Player = null;
+    player: Player = null;
     map: Tile[][] = new Array();
+    monsters: Monster[] = new Array();
+    buildings: Building[] = new Array();
+
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        cc.director.on(EventConstant.PLAYER_MOVE, (event) => { this.playerAction(event.detail.dir, event.detail.pos, event.detail.dt) });
+        cc.director.on(EventConstant.PLAYER_MOVE, (event) => {
+            this.playerAction(event.detail.dir, event.detail.pos, event.detail.dt)
+        });
         //初始化玩家
         this.player = cc.instantiate(this.playerPrefab).getComponent(Player);
         this.player.node.parent = this.node;
@@ -48,20 +55,29 @@ export default class Dungeon extends cc.Component {
             }
         }
     }
+
+    contains(mapStr: string, typeStr: string): boolean {
+        let isequal = mapStr.indexOf(typeStr) != -1;
+        return isequal;
+    }
+
     start() {
 
     }
+
     //获取地图里下标的坐标
     static getPosInMap(pos: cc.Vec3) {
         let x = Dungeon.MAPX - Dungeon.WIDTH_SIZE / 2 * Dungeon.TILE_SIZE + pos.x * Dungeon.TILE_SIZE;
         let y = Dungeon.MAPY - Dungeon.HEIGHT_SIZE / 2 * Dungeon.TILE_SIZE + pos.y * Dungeon.TILE_SIZE;
         return cc.v3(x, y);
     }
+
     /** 玩家在地牢移动 */
     private playerAction(dir: number, pos: cc.Vec3, dt: number) {
         if (this.player) {
-            this.player.playerAction(dir, pos, dt, this)
+            this.player.playAction(dir);
         }
     }
+
     // update (dt) {}
 }

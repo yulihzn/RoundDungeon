@@ -17,14 +17,17 @@ export default class Boss extends Actor {
 
     // onLoad () {}
 
-    start () {
+    start() {
 
     }
+
     takeDamage(damage: DamageData): boolean {
         return false;
     }
+
     actorName(): string {
         return '';
     }
+
     // update (dt) {}
 }
