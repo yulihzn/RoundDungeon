@@ -84,7 +84,7 @@ export default class Player extends Actor {
         }
         let targetPos = cc.v3(this.pos.x + offsetX, this.pos.y + offsetY);
         let target = Dungeon.getPosInMap(targetPos);
-        if (targetPos.x < 0 || targetPos.x >= Dungeon.WIDTH_SIZE || targetPos.y < 0 || targetPos.y >= Dungeon.WIDTH_SIZE) {
+        if (targetPos.x < 0 || targetPos.x >= Dungeon.WIDTH_SIZE || targetPos.y < 0 || targetPos.y >= Dungeon.HEIGHT_SIZE) {
             return;
         }
 
