@@ -3,6 +3,7 @@
   "packages": "packages",
   "name": "RoundDugeon",
   "uuid": "75197916-75f3-4241-b4df-672a953979c1",
-  "version": "2.3.3-rc.4",
-  "id": "f6cdf829-778a-4b75-8287-74b5e4109555"
+  "version": "2.3.3",
+  "id": "f6cdf829-778a-4b75-8287-74b5e4109555",
+  "isNew": false
 }

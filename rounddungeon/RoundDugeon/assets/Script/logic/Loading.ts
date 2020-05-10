@@ -45,17 +45,17 @@ export default class Loading extends cc.Component {
     }
 
     loadRemote() {
-        // this.isRemoteLoaded = true;
-        let xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
-                var response = xhr.responseText;
-                console.log(response);
-                this.isRemoteLoaded = true;
-            }
-        };
-        xhr.open("GET", "http://localhost:8080/mapList", true);
-        xhr.send();
+        this.isRemoteLoaded = true;
+        // let xhr = new XMLHttpRequest();
+        // xhr.onreadystatechange = () => {
+        //     if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+        //         var response = xhr.responseText;
+        //         console.log(response);
+        //         this.isRemoteLoaded = true;
+        //     }
+        // };
+        // xhr.open("GET", "http://localhost:8080/mapList", true);
+        // xhr.send();
     }
 
     update(dt) {

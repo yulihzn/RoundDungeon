@@ -43,5 +43,6 @@
       "enable": false
     }
   },
-  "start-scene": "4465dca0-0d00-4d71-8666-fc839e72d522"
+  "start-scene": "4465dca0-0d00-4d71-8666-fc839e72d522",
+  "migrate-history": []
 }

@@ -81,7 +81,7 @@ export default class KeyboardController extends cc.Component {
                 this.isRight = false;
                 break;
 
-            case cc.macro.KEY.j:
+            case cc.macro.KEY.space:
                 this.isA = false;
                 break;
             case cc.macro.KEY.k:
