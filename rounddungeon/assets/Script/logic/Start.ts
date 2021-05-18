@@ -14,7 +14,7 @@ export default class Start extends cc.Component {
 
     // onLoad () {}
     startGame() {
-        cc.director.loadScene('loading');
+        cc.director.loadScene('main');
     }
 
     start() {
