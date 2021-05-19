@@ -101,8 +101,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1280,
-      "height": 720
+      "width": 1080,
+      "height": 1920
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -113,8 +113,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        640,
-        360,
+        540,
+        960,
         0,
         0,
         0,
@@ -266,6 +266,7 @@
     "playerPrefab": {
       "__uuid__": "ba6051ef-590c-42c1-8779-8eef89b3825f"
     },
+    "wallPrefab": null,
     "_id": "09N3H3WZpDtKber4JJw8rD"
   },
   {
@@ -730,8 +731,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        44.403,
-        -44.403,
+        131.367,
+        622.32,
         0,
         0,
         0,
@@ -2219,7 +2220,7 @@
       "ctor": "Float64Array",
       "array": [
         -424.047,
-        -195.373,
+        -751.685,
         0,
         0,
         0,
@@ -2661,7 +2662,7 @@
       "ctor": "Float64Array",
       "array": [
         418.423,
-        -224.627,
+        -798.056,
         0,
         0,
         0,
@@ -2829,7 +2830,8 @@
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       }
     ],
-    "_useOriginalSize": false,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
     "_string": "",
     "_N$string": "",
     "_fontSize": 20,
@@ -3218,8 +3220,8 @@
     "_enabled": true,
     "_designResolution": {
       "__type__": "cc.Size",
-      "width": 1280,
-      "height": 720
+      "width": 1080,
+      "height": 1920
     },
     "_fitWidth": true,
     "_fitHeight": true,
