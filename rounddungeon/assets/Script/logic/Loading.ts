@@ -1,3 +1,4 @@
+import LoadingManager from "../manager/LoadingManager";
 import Logic from "./Logic";
 
 // Learn TypeScript:
@@ -15,33 +16,18 @@ export default class Loading extends cc.Component {
     @property(cc.Label)
     label: cc.Label = null;
     private timeDelay = 0;
-    private isSpriteFramesLoaded = false;
     private isRemoteLoaded = false;
-
+    private loadingManager: LoadingManager = new LoadingManager();
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
         this.label.string = 'loading...';
+        this.loadingManager.init();
     }
 
     start() {
-        this.loadSpriteFrames();
-        this.loadRemote();
-    }
-
-    loadSpriteFrames() {
-        if (Logic.spriteFrames) {
-            this.isSpriteFramesLoaded = true;
-            return;
-        }
-        cc.loader.loadResDir('Texture', cc.SpriteFrame, (err: Error, assert: cc.SpriteFrame[]) => {
-            Logic.spriteFrames = {};
-            for (let frame of assert) {
-                Logic.spriteFrames[frame.name] = frame;
-            }
-            this.isSpriteFramesLoaded = true;
-            cc.log('texture loaded');
-        })
+        this.loadingManager.loadAutoSpriteFrames();
+        this.loadingManager.loadSpriteAtlas(LoadingManager.KEY_TEXTURES, 'circleavatar0');
     }
 
     loadRemote() {
@@ -60,13 +46,10 @@ export default class Loading extends cc.Component {
 
     update(dt) {
         this.timeDelay += dt;
-        if (this.timeDelay > 0.16 && this.isSpriteFramesLoaded && this.isRemoteLoaded) {
+        if (this.timeDelay > 0.16 && this.loadingManager.isAllSpriteFramesLoaded()) {
             this.timeDelay = 0;
-            this.isSpriteFramesLoaded = false;
-            cc.director.preloadScene('game', () => {
-            }, () => {
-                cc.director.loadScene('game');
-            })
+            this.loadingManager.reset();
+            cc.director.loadScene('game');
         }
 
     }

@@ -13,16 +13,18 @@ export default class Logic extends cc.Component {
     //图片资源
     static spriteFrames: { [key: string]: cc.SpriteFrame } = null;
     static speed = 1;
+    //npc json
+    static nonplayers: { [key: string]: string } = null;
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
+        cc.game.setFrameRate(60);
         cc.game.addPersistRootNode(this.node);
+        cc.director.getCollisionManager().enabled = true;
     }
 
-    start() {
-
+    static spriteFrameRes(spriteFrameName: string) {
+        return Logic.spriteFrames[spriteFrameName] ? Logic.spriteFrames[spriteFrameName] : null;
     }
-
-    // update (dt) {}
 }

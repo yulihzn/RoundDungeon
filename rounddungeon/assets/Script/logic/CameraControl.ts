@@ -1,4 +1,3 @@
-import Dungeon from "./Dungeon";
 import EventConstant from "./EventConstant";
 
 // Learn TypeScript:
@@ -16,8 +15,6 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class CameraControl extends cc.Component {
 
-    @property(Dungeon)
-    dungeon: Dungeon = null;
     isZoomCamera = false;
     camera: cc.Camera;
     isShaking = false;
@@ -48,19 +45,19 @@ export default class CameraControl extends cc.Component {
     }
 
     lateUpdate() {
-        let targetPos = this.dungeon.player.node.convertToWorldSpaceAR(cc.Vec3.ZERO);
-        this.node.position = this.lerp(this.node.position, this.node.parent.convertToNodeSpaceAR(targetPos), 0.1);
-        if (this.isShaking) {
-            if (this.offsetIndex > this.offsetArr.length - 1) {
-                this.offsetIndex = 0;
-            }
-            this.node.position = this.node.position.addSelf(this.isHeavyShaking ? this.offsetArr1[this.offsetIndex] : this.offsetArr[this.offsetIndex]);
-            this.offsetIndex++;
-        }
-        this.camera.zoomRatio = this.lerpNumber(this.camera.zoomRatio, this.isZoomCamera ? 0.7 : 1, 0.05);
-        // this.node.position = this.node.parent.convertToNodeSpaceAR(targetPos);
-        // let ratio = targetPos.y / cc.winSize.height;
-        // this.camera.zoomRatio = 1 + (0.5 - ratio) * 0.5;
+        // let targetPos = this.dungeon.player.node.convertToWorldSpaceAR(cc.Vec3.ZERO);
+        // this.node.position = this.lerp(this.node.position, this.node.parent.convertToNodeSpaceAR(targetPos), 0.1);
+        // if (this.isShaking) {
+        //     if (this.offsetIndex > this.offsetArr.length - 1) {
+        //         this.offsetIndex = 0;
+        //     }
+        //     this.node.position = this.node.position.addSelf(this.isHeavyShaking ? this.offsetArr1[this.offsetIndex] : this.offsetArr[this.offsetIndex]);
+        //     this.offsetIndex++;
+        // }
+        // this.camera.zoomRatio = this.lerpNumber(this.camera.zoomRatio, this.isZoomCamera ? 0.7 : 1, 0.05);
+        // // this.node.position = this.node.parent.convertToNodeSpaceAR(targetPos);
+        // // let ratio = targetPos.y / cc.winSize.height;
+        // // this.camera.zoomRatio = 1 + (0.5 - ratio) * 0.5;
     }
 
     shakeCamera(isHeavyShaking: boolean) {
