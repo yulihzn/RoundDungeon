@@ -1,8 +1,8 @@
 {
   "ver": "1.2.6",
-  "uuid": "b4daab0a-7c83-452a-88e9-e52d81aa8e52",
+  "uuid": "6bc06893-9c3f-42ef-997b-42a6b85f0744",
   "importer": "asset",
-  "rawTextureUuid": "9c1c3496-b070-4045-888b-3382d95869f8",
+  "rawTextureUuid": "92dc8bc1-0e57-4f35-b777-55940f64f48d",
   "size": {
     "width": 64,
     "height": 256
@@ -11,9 +11,9 @@
   "subMetas": {
     "circleavatar0.png": {
       "ver": "1.0.6",
-      "uuid": "3b2c6a63-eab8-4827-89fc-63ef0a1720d0",
+      "uuid": "3768dc12-5d2f-497a-813a-03cc2dd9d5d9",
       "importer": "sprite-frame",
-      "rawTextureUuid": "9c1c3496-b070-4045-888b-3382d95869f8",
+      "rawTextureUuid": "92dc8bc1-0e57-4f35-b777-55940f64f48d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -34,9 +34,9 @@
     },
     "circleavatar1.png": {
       "ver": "1.0.6",
-      "uuid": "0b843188-acbe-415d-978e-ca6b3562dcb7",
+      "uuid": "c3f58adb-5e62-4a13-b2a6-39c9c13b9efb",
       "importer": "sprite-frame",
-      "rawTextureUuid": "9c1c3496-b070-4045-888b-3382d95869f8",
+      "rawTextureUuid": "92dc8bc1-0e57-4f35-b777-55940f64f48d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -57,9 +57,9 @@
     },
     "circleavatar2.png": {
       "ver": "1.0.6",
-      "uuid": "5949418d-c3ec-492f-ab78-7eec099ccfaa",
+      "uuid": "15e58748-9831-4983-8706-4a3e68131705",
       "importer": "sprite-frame",
-      "rawTextureUuid": "9c1c3496-b070-4045-888b-3382d95869f8",
+      "rawTextureUuid": "92dc8bc1-0e57-4f35-b777-55940f64f48d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

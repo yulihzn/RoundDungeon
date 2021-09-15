@@ -8,7 +8,7 @@
     "D:/wxcx/RoundDungeon/resource/Texture"
   ],
   "packOptions": {
-    "textureName": "texture",
+    "textureName": "textures",
     "textureFormat": "png",
     "removeFileExtension": false,
     "prependFolderName": false,

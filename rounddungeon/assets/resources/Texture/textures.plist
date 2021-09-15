@@ -53,11 +53,11 @@
       <key>premultiplyAlpha</key>
       <false/>
       <key>realTextureFileName</key>
-      <string>texture.png</string>
+      <string>textures.png</string>
       <key>size</key>
       <string>{64,256}</string>
       <key>textureFileName</key>
-      <string>texture</string>
+      <string>textures</string>
     </dict>
   </dict>
 </plist>
