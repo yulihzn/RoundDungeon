@@ -62,8 +62,9 @@ export default class InputSystem extends ECSSystem {
             return;
         }
         const spriteNode = this.inputComponent.inputNode.getChildByName('sprite');
-        const line1 = this.inputComponent.inputNode.getChildByName('line1');
-        const line2 = this.inputComponent.inputNode.getChildByName('line2');
+        const bg = this.inputComponent.inputNode.getChildByName('bg');
+        const line1 = this.inputComponent.inputNode.getChildByName('bg').getChildByName('line1');
+        const line2 = this.inputComponent.inputNode.getChildByName('bg').getChildByName('line2');
         const worldPos = this.gameWord.camera.getScreenToWorldPoint(event.getLocation());
         const pos = this.inputComponent.inputNode.convertToNodeSpaceAR(worldPos);
         switch (event.type) {
@@ -80,8 +81,7 @@ export default class InputSystem extends ECSSystem {
                 this.dragPos = pos.mul(d > 200 ? 200 / d : 1);
                 spriteNode.setPosition(this.dragPos);
                 const angle = Utils.getRotateAngle(cc.v2(this.dragPos));
-                line1.angle = angle;
-                line2.angle = angle;
+                bg.angle = angle;
                 line1.width = d > 200 ? 200 : d;
                 line2.width = d > 200 ? 200 : d;
                 break;

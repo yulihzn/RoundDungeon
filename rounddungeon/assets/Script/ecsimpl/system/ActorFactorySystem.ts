@@ -8,6 +8,7 @@ import Random from "../../utlis/Random";
 import { InputComponent } from "../component/InputComponent";
 import { AutoInputComponent } from "../component/AutoInputComponent";
 import InputNodeChangeEvent from "../event/InputNodeChangeEvent";
+import { ColliderComponent } from "../component/ColliderComponent";
 
 @ecsclass("ActorFactorySystem")
 export class ActorFactorySystem extends ECSSystem {
@@ -29,11 +30,13 @@ export class ActorFactorySystem extends ECSSystem {
         if (isPlayer) {
             actor.addComponent(new MoveComponent(cc.v3(0, 0), cc.v3(0, 0), 0, 20));
             actor.addComponent(new PlayerComponent());
+            actor.addComponent(new ColliderComponent(55));
             let ic = new InputComponent(node);
             actor.addComponent(ic);
             this.ecs.events.push(new InputNodeChangeEvent(ic));
         } else {
             actor.addComponent(new AutoInputComponent(true));
+            actor.addComponent(new ColliderComponent(55));
             actor.addComponent(new MoveComponent(cc.v3(this.random.getRandomNum(-1000, 1000), this.random.getRandomNum(-1000, 1000)), cc.v3(0, 0), 0, 1));
         }
         this.ecs.entities.add(actor);

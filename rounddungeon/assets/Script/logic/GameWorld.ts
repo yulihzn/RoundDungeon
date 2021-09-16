@@ -8,6 +8,7 @@
 import { ECSImpl } from "../ecs/impl/ECSImpl";
 import { ActorFactorySystem } from "../ecsimpl/system/ActorFactorySystem";
 import { CameraSystem } from "../ecsimpl/system/CameraSystem";
+import { ColliderSystem } from "../ecsimpl/system/ColliderSystem";
 import InputSystem from "../ecsimpl/system/InputSystem";
 import { MoveSystem } from "../ecsimpl/system/MoveSystem";
 
@@ -28,7 +29,8 @@ export default class GameWorld extends cc.Component {
         this.ecs.systems.add(new InputSystem(this))
             .add(new CameraSystem(this.camera))
             .add(new ActorFactorySystem(this.node, this.actor))
-            .add(new MoveSystem());
+            .add(new MoveSystem())
+            .add(new ColliderSystem());
     }
 
     start() {
