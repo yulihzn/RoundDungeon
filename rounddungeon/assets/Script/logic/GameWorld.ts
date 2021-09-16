@@ -6,10 +6,10 @@
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
 import { ECSImpl } from "../ecs/impl/ECSImpl";
-import { ActorFactorySystem } from "../system/ActorFactorySystem";
-import { CameraSystem } from "../system/CameraSystem";
-import InputSystem from "../system/InputSystem";
-import { MoveSystem } from "../system/MoveSystem";
+import { ActorFactorySystem } from "../ecsimpl/system/ActorFactorySystem";
+import { CameraSystem } from "../ecsimpl/system/CameraSystem";
+import InputSystem from "../ecsimpl/system/InputSystem";
+import { MoveSystem } from "../ecsimpl/system/MoveSystem";
 
 const { ccclass, property } = cc._decorator;
 
@@ -20,14 +20,12 @@ export default class GameWorld extends cc.Component {
     actor: cc.Prefab = null
     @property(cc.Camera)
     camera: cc.Camera = null;
-    @property(cc.Node)
-    touchArea:cc.Node = null;
 
     private ecs = new ECSImpl();
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        this.ecs.systems.add(new InputSystem(this.touchArea,this))
+        this.ecs.systems.add(new InputSystem(this))
             .add(new CameraSystem(this.camera))
             .add(new ActorFactorySystem(this.node, this.actor))
             .add(new MoveSystem());

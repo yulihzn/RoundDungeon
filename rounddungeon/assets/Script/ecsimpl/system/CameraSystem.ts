@@ -1,5 +1,5 @@
-import { ecsclass } from "../ecs/__private";
-import { ECSSystem } from "../ecs/ECSSystem";
+import { ecsclass } from "../../ecs/__private";
+import { ECSSystem } from "../../ecs/ECSSystem";
 import { NodeRenderComponent } from "../component/NodeRenderComponent";
 import { PlayerComponent } from "../component/PlayerComponent";
 

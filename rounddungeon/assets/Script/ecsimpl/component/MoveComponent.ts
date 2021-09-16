@@ -1,5 +1,5 @@
-import { ECSComponent } from "../ecs/ECSComponent";
-import { ecsclass } from "../ecs/__private";
+import { ECSComponent } from "../../ecs/ECSComponent";
+import { ecsclass } from "../../ecs/__private";
 
 @ecsclass("MoveComponent")
 export class MoveComponent extends ECSComponent {

@@ -1,6 +1,6 @@
-import { ecsclass } from "../ecs/__private";
+import { ecsclass } from "../../ecs/__private";
 import { MoveComponent } from "../component/MoveComponent";
-import { ECSSystem } from "../ecs/ECSSystem";
+import { ECSSystem } from "../../ecs/ECSSystem";
 import { NodeRenderComponent } from "../component/NodeRenderComponent";
 
 @ecsclass("MoveSystem")

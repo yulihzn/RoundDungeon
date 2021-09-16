@@ -1,5 +1,5 @@
-import { ECSComponent } from "../ecs/ECSComponent";
-import { ecsclass } from "../ecs/__private";
+import { ECSComponent } from "../../ecs/ECSComponent";
+import { ecsclass } from "../../ecs/__private";
 
 /**
  * 自动输入组件

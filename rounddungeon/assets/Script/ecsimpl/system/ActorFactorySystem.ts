@@ -1,12 +1,13 @@
-import { ECSEntity } from "../ecs/ECSEntity";
-import { ecsclass } from "../ecs/__private";
+import { ECSEntity } from "../../ecs/ECSEntity";
+import { ecsclass } from "../../ecs/__private";
 import { MoveComponent } from "../component/MoveComponent";
 import { NodeRenderComponent } from "../component/NodeRenderComponent";
-import { ECSSystem } from "../ecs/ECSSystem";
+import { ECSSystem } from "../../ecs/ECSSystem";
 import { PlayerComponent } from "../component/PlayerComponent";
-import Random from "../utlis/Random";
+import Random from "../../utlis/Random";
 import { InputComponent } from "../component/InputComponent";
 import { AutoInputComponent } from "../component/AutoInputComponent";
+import InputNodeChangeEvent from "../event/InputNodeChangeEvent";
 
 @ecsclass("ActorFactorySystem")
 export class ActorFactorySystem extends ECSSystem {
@@ -26,9 +27,11 @@ export class ActorFactorySystem extends ECSSystem {
         const actor = new ECSEntity();
         actor.addComponent(new NodeRenderComponent(node));
         if (isPlayer) {
-            actor.addComponent(new MoveComponent(cc.v3(0, 0), cc.v3(0, 0), 0, 1));
+            actor.addComponent(new MoveComponent(cc.v3(0, 0), cc.v3(0, 0), 0, 20));
             actor.addComponent(new PlayerComponent());
-            actor.addComponent(new InputComponent(true));
+            let ic = new InputComponent(node);
+            actor.addComponent(ic);
+            this.ecs.events.push(new InputNodeChangeEvent(ic));
         } else {
             actor.addComponent(new AutoInputComponent(true));
             actor.addComponent(new MoveComponent(cc.v3(this.random.getRandomNum(-1000, 1000), this.random.getRandomNum(-1000, 1000)), cc.v3(0, 0), 0, 1));
