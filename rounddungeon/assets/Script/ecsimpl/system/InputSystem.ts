@@ -94,7 +94,7 @@ export default class InputSystem extends ECSSystem {
                 cc.tween(spriteNode).to(druation, { position: cc.Vec3.ZERO }).call(() => {
                     if (moveComponent) {
                         moveComponent.speed = distance / druation;
-                        moveComponent.direction = cc.Vec3.ZERO.subtract(this.dragPos).normalizeSelf();
+                        moveComponent.direction = cc.Vec3.ZERO.sub(this.dragPos).normalizeSelf();
                     }
                 }).start();
                 break;

@@ -7,6 +7,7 @@ export class ColliderComponent extends ECSComponent {
     radius = 0;
     static: boolean = false;
     inColliderId: string = '';
+    inColliders: { [key: string]: boolean } = {};
     constructor(radius: number) {
         super();
         this.radius = radius;
