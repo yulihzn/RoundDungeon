@@ -6,9 +6,9 @@ import { ecsclass } from "../../ecs/__private";
  */
 @ecsclass("AutoInputComponent")
 export class AutoInputComponent extends ECSComponent {
-    hasController = false;
+    controllocked = false;
     constructor(hasController:boolean){
         super();
-        this.hasController = hasController;
+        this.controllocked = hasController;
     }
 }

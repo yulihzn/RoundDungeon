@@ -19,7 +19,7 @@ export class ActorFactorySystem extends ECSSystem {
     }
     start() {
         this.createActor(true);
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 100; i++) {
             this.createActor(false);
         }
     }
@@ -31,16 +31,16 @@ export class ActorFactorySystem extends ECSSystem {
         node.getChildByName('sprite').getComponent(cc.Sprite).spriteFrame = Logic.spriteFrameRes(isPlayer?'circleavatar2':'circleavatar1');
         node.zIndex = isPlayer?1000:10;
         if (isPlayer) {
-            actor.addComponent(new MoveComponent(cc.v3(0, 0), cc.v3(0, 0), 0, 10));
+            actor.addComponent(new MoveComponent(cc.v3(0, 0), cc.v3(0, 0), 0, 5));
             actor.addComponent(new PlayerComponent());
-            actor.addComponent(new ColliderComponent(55));
+            actor.addComponent(new ColliderComponent(node.width/2));
             let ic = new InputComponent(node);
             actor.addComponent(ic);
             this.ecs.events.push(new InputNodeChangeEvent(ic));
         } else {
             actor.addComponent(new AutoInputComponent(true));
-            actor.addComponent(new ColliderComponent(55));
-            actor.addComponent(new MoveComponent(cc.v3(this.random.getRandomNum(-this.size.width/2, this.size.width/2), this.random.getRandomNum(-this.size.height/2, this.size.height/2)), cc.v3(0, 0), 0, 10));
+            actor.addComponent(new ColliderComponent(node.width/2));
+            actor.addComponent(new MoveComponent(cc.v3(this.random.getRandomNum(-this.size.width/2, this.size.width/2), this.random.getRandomNum(-this.size.height/2, this.size.height/2)), cc.v3(0, 0), 0, 5));
         }
         this.ecs.entities.add(actor);
     }

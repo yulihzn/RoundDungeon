@@ -27,10 +27,10 @@ export default class GameWorld extends cc.Component {
 
     onLoad() {
         this.ecs.systems.add(new InputSystem(this))
-            .add(new CameraSystem(this.camera))
-            .add(new ActorFactorySystem(this.node, this.actor,cc.size(1500,1500)))
+            .add(new CameraSystem(this.camera,cc.size(2000,2000)))
+            .add(new ActorFactorySystem(this.node, this.actor,cc.size(1800,1800)))
             .add(new MoveSystem())
-            .add(new ColliderSystem(cc.size(1500,1500)));
+            .add(new ColliderSystem(cc.size(2000,2000)));
     }
 
     start() {

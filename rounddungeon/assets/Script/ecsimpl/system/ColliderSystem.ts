@@ -28,11 +28,9 @@ export class ColliderSystem extends ECSSystem {
                     } else {
                         //第一次碰撞的时候记录双方的id
                         //耗损双方速度再平均速度
-                        move1.speed -= 10;
-                        move2.speed -= 10;
                         let totalspeed = move1.speed + move2.speed;
-                        move1.speed = totalspeed / 2;
-                        move2.speed = totalspeed / 2;
+                        move1.speed = totalspeed *0.2;
+                        move2.speed = totalspeed *0.6;
                         value1.inColliders[value2.entityId] = true;
                         value2.inColliders[value1.entityId] = true;
                     }
@@ -47,11 +45,11 @@ export class ColliderSystem extends ECSSystem {
             if (dir > -1) {
                 switch (dir) {
                     case 0: move1.direction = move1.direction.sub(cc.v3(0, -1).mul(2 * move1.direction.dot(cc.v3(0, -1)))); break;
-                    case 1: move1.direction = move1.direction.sub(cc.v3(0, -1).mul(2 * move1.direction.dot(cc.v3(0, 1)))); break;
+                    case 1: move1.direction = move1.direction.sub(cc.v3(0, 1).mul(2 * move1.direction.dot(cc.v3(0, 1)))); break;
                     case 2: move1.direction = move1.direction.sub(cc.v3(1, 0).mul(2 * move1.direction.dot(cc.v3(1, 0)))); break;
                     case 3: move1.direction = move1.direction.sub(cc.v3(-1, 0).mul(2 * move1.direction.dot(cc.v3(-1, 0)))); break;
                 }
-                move1.speed += 10;
+                // move1.speed += 10;
             }
         }
 

@@ -4,8 +4,8 @@ import { ECSSystem } from "../../ecs/ECSSystem";
 import { NodeRenderComponent } from "../component/NodeRenderComponent";
 import { PlayerComponent } from "../component/PlayerComponent";
 
-@ecsclass("MoveSystem")
-export class MoveSystem extends ECSSystem {
+@ecsclass("RoundSystem")
+export class RoundSystem extends ECSSystem {
     update(dt: number) {
         const moveComponents = this.ecs.components.all(MoveComponent);
         moveComponents.forEach((value) => {

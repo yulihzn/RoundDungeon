@@ -6,6 +6,8 @@ import GameWorld from "../../logic/GameWorld";
 import Random from "../../utlis/Random";
 import InputNodeChangeEvent from "../event/InputNodeChangeEvent";
 import Utils from "../../utlis/Utils";
+import { AutoInputComponent } from "../component/AutoInputComponent";
+import { PlayerComponent } from "../component/PlayerComponent";
 
 @ecsclass('InputSystem')
 export default class InputSystem extends ECSSystem {
@@ -48,6 +50,30 @@ export default class InputSystem extends ECSSystem {
             this.inputComponent = value.inputComponent;
             this.setOnListener(value.inputComponent.inputNode);
         })
+        if (this.isCheckTimeDelay(dt)) {
+            const autos = this.ecs.components.all(AutoInputComponent);
+            const players = this.ecs.components.all(PlayerComponent);
+            autos.forEach((value) => {
+                const entity = this.ecs.entities.get(value.entityId);
+                if (entity.hasComponent(MoveComponent)) {
+                    const moveComponent = entity.getComponent(MoveComponent);
+                    if(players.length>0&&moveComponent.speed <= 0){
+                        moveComponent.speed = this.random.getRandomNum(1500, 3000);
+                        moveComponent.direction = moveComponent.position.sub(this.ecs.entities.get(players[0].entityId).getComponent(MoveComponent).position).normalize();
+                    }
+                }
+            })
+        }
+
+    }
+    checkTimeDelay = 0;
+    isCheckTimeDelay(dt: number): boolean {
+        this.checkTimeDelay += dt;
+        if (this.checkTimeDelay > 0.1) {
+            this.checkTimeDelay = 0;
+            return true;
+        }
+        return false;
     }
     private onTouch(event: cc.Event.EventTouch): void {
         if (!this.inputComponent) {
@@ -78,12 +104,12 @@ export default class InputSystem extends ECSSystem {
                 break;
             case cc.Node.EventType.TOUCH_MOVE:
                 const d = cc.Vec2.distance(pos, cc.Vec3.ZERO);
-                this.dragPos = pos.mul(d > 200 ? 200 / d : 1);
+                this.dragPos = pos.mul(d > 400 ? 400 / d : 1);
                 spriteNode.setPosition(this.dragPos);
                 const angle = Utils.getRotateAngle(cc.v2(this.dragPos));
                 bg.angle = angle;
-                line1.width = d > 200 ? 200 : d;
-                line2.width = d > 200 ? 200 : d;
+                line1.width = d > 400 ? 400 : d;
+                line2.width = d > 400 ? 400 : d;
                 break;
             case cc.Node.EventType.TOUCH_END:
             case cc.Node.EventType.TOUCH_CANCEL:
@@ -95,6 +121,9 @@ export default class InputSystem extends ECSSystem {
                     if (moveComponent) {
                         moveComponent.speed = distance / druation;
                         moveComponent.direction = cc.Vec3.ZERO.sub(this.dragPos).normalizeSelf();
+                        if (entity.hasComponent(PlayerComponent)) {
+                            cc.log(`${moveComponent.speed.toFixed(2)})`);
+                        }
                     }
                 }).start();
                 break;
